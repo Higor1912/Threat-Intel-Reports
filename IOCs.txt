@@ -1,0 +1,27 @@
+# IOCs - Phishing Campaign "Fake Microsoft Login"
+# Data de coleta: 07/10/2025
+# Fonte: https://urlscan.io/result/XXXX
+
+## URLs maliciosas
+https://login-microsoftsupport[.]com
+https://update365office[.]net
+
+## Endereços IP
+45.77.123.87
+192.168.56.101
+
+## Domínios relacionados
+microsoftloginportal[.]com
+outlookverifycenter[.]org
+
+## Hashes (MD5/SHA256)
+MD5: a3c0b1e1b81b82b17b92ff2a731b3a4f
+SHA256: 8f4d3d4ab7b27b6a9f3b8d25d61e2aefc3f2a7a4b8a1b2f3a3d4e5f6b7c8d9e0
+
+## E-mails usados na campanha
+support@outlookverifycenter[.]org
+admin@office-update[.]com
+
+## Arquivos maliciosos (nomes ou paths)
+invoice_2025.pdf.exe
+document_update_365.docx
