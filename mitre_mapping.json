@@ -1,0 +1,43 @@
+{
+  "report": "01 — Efimer Trojan: AI-Assisted Phishing Campaign Targeting Brazilian Users",
+  "date": "2025-10",
+  "threat_actor": "Unknown (FIN)",
+  "techniques": [
+    {
+      "id": "T1566.002",
+      "tactic": "Initial Access",
+      "name": "Phishing: Spearphishing Link",
+      "procedure": "Envio de e-mails falsos contendo links para páginas clonadas de Gov.br e Detran"
+    },
+    {
+      "id": "T1204",
+      "tactic": "Execution",
+      "name": "User Execution",
+      "procedure": "Usuário executa binário malicioso baixado via link de phishing ou torrent"
+    },
+    {
+      "id": "T1027",
+      "tactic": "Defense Evasion",
+      "name": "Obfuscated Files or Information",
+      "procedure": "Arquivo executável ofuscado/empacotado para evasão de antivírus"
+    },
+    {
+      "id": "T1547.001",
+      "tactic": "Persistence",
+      "name": "Registry Run Keys / Startup Folder",
+      "procedure": "Persistência via HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+    },
+    {
+      "id": "T1003",
+      "tactic": "Credential Access",
+      "name": "OS Credential Dumping",
+      "procedure": "Roubo de credenciais armazenadas no Chrome e carteiras de criptomoeda locais"
+    },
+    {
+      "id": "T1041",
+      "tactic": "Exfiltration",
+      "name": "Exfiltration Over C2 Channel",
+      "procedure": "Exfiltração de credenciais via HTTP para C2 na porta 8080"
+    }
+  ]
+}
