@@ -1,0 +1,22 @@
+# References — Efimer Trojan: AI-Assisted Phishing Campaign Targeting Brazilian Users
+
+## Primary Sources
+- The Hacker News — AI Tools Fuel Brazilian Phishing Scam (2025): https://thehackernews.com/2025/08/ai-tools-fuel-brazilian-phishing-scam.html
+
+## Threat Intelligence Platforms
+- VirusTotal: https://www.virustotal.com
+- AlienVault OTX: https://otx.alienvault.com
+- ThreatFox: https://threatfox.abuse.ch
+
+## Sandbox Analysis
+- Any.Run: https://any.run
+- Hybrid Analysis: https://www.hybrid-analysis.com
+
+## ATT&CK Framework
+- MITRE ATT&CK Matrix for Enterprise: https://attack.mitre.org
+- T1566.002 — Spearphishing Link: https://attack.mitre.org/techniques/T1566/002/
+- T1204 — User Execution: https://attack.mitre.org/techniques/T1204/
+- T1027 — Obfuscated Files or Information: https://attack.mitre.org/techniques/T1027/
+- T1547.001 — Registry Run Keys: https://attack.mitre.org/techniques/T1547/001/
+- T1003 — OS Credential Dumping: https://attack.mitre.org/techniques/T1003/
+- T1041 — Exfiltration Over C2 Channel: https://attack.mitre.org/techniques/T1041/
