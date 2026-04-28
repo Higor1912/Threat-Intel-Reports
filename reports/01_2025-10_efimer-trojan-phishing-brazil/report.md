@@ -6,6 +6,12 @@
 
 ---
 
+> 📄 [Download PDF](./report.pdf)
+
+![Preview](./screenshots/preview.png)
+
+---
+
 ## 🧩 1. Sumário Executivo
 
 Entre setembro e outubro de 2025, foram identificadas múltiplas campanhas de **phishing direcionadas a usuários brasileiros**, utilizando **ferramentas de inteligência artificial** para criar páginas falsas de instituições governamentais, como o Gov.br e o Detran.  
