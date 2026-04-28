@@ -8,7 +8,7 @@
 
 > 📄 [Download PDF](./report.pdf)
 
-![Preview](./screenshots/preview.png)
+![Preview](./screenshots/preview.jpg)
 
 ---
 
