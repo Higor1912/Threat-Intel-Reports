@@ -1,0 +1,16 @@
+# References — Feed Diário: IOCs Maliciosos 2026-05-04
+
+## Threat Intelligence Feeds
+- Feodo Tracker — C2 IP blocklist: https://feodotracker.abuse.ch
+- OpenPhish — Active phishing URLs: https://openphish.com
+
+## Enrichment Platforms
+- VirusTotal: https://virustotal.com
+- AbuseIPDB: https://www.abuseipdb.com
+
+## ATT&CK Framework
+- MITRE ATT&CK Matrix for Enterprise: https://attack.mitre.org
+- T1566.002 — Phishing: Spearphishing Link: https://attack.mitre.org/techniques/T1566/002/
+- T1608.005 — Link Target: https://attack.mitre.org/techniques/T1608/005/
+- T1583.001 — Domains: https://attack.mitre.org/techniques/T1583/001/
+- T1071.001 — Application Layer Protocol: Web Protocols: https://attack.mitre.org/techniques/T1071/001/

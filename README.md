@@ -2,7 +2,7 @@
 
 Operational threat intelligence reports based on OSINT investigation and MITRE ATT&CK mapping. Each report documents a real-world threat campaign — covering adversary infrastructure, IOC correlation, TTP analysis, and actionable detection recommendations.
 
-![Reports](https://img.shields.io/badge/Reports-01-blue)
+![Reports](https://img.shields.io/badge/Reports-02-blue)
 ![ATT&CK](https://img.shields.io/badge/MITRE%20ATT%26CK-v16-red)
 ![TLP](https://img.shields.io/badge/TLP-GREEN%20%7C%20AMBER-orange)
 ![Tooling](https://img.shields.io/badge/Tooling-CTI%20Toolkit-informational)
@@ -14,6 +14,7 @@ Operational threat intelligence reports based on OSINT investigation and MITRE A
 | # | Date | Title | Type | Threat Actor | Key TTPs | PDF |
 |---|------|-------|------|--------------|----------|-----|
 | 01 | Oct/2025 | [Efimer Trojan — AI-Assisted Phishing Campaign Targeting Brazilian Users](./reports/01_2025-10_efimer-trojan-phishing-brazil/report.md) | Phishing / Malware | Unknown (FIN) | T1566.002, T1027, T1003 | [↓ PDF](./reports/01_2025-10_efimer-trojan-phishing-brazil/report.pdf) |
+| 02 | May/2026 | [Feed Diário — IOCs Maliciosos 2026-05-04](./reports/02_2026-05_feed-diario-iocs-maliciosos/report.pdf) | Phishing / C2 | Multiple (Unknown) | T1566.002, T1608.005, T1583.001, T1071.001 | [↓ PDF](./reports/02_2026-05_feed-diario-iocs-maliciosos/report.pdf) |
 
 > New reports are published monthly. Each analysis follows the methodology described below.
 
@@ -60,12 +61,15 @@ Techniques documented across all reports:
 
 | Technique ID | Name | Tactic | Reports |
 |---|---|---|---|
-| T1566.002 | Phishing: Spearphishing Link | Initial Access | 01 |
+| T1566.002 | Phishing: Spearphishing Link | Initial Access | 01, 02 |
 | T1204 | User Execution | Execution | 01 |
 | T1027 | Obfuscated Files or Information | Defense Evasion | 01 |
 | T1547.001 | Registry Run Keys / Startup Folder | Persistence | 01 |
 | T1003 | OS Credential Dumping | Credential Access | 01 |
 | T1041 | Exfiltration Over C2 Channel | Exfiltration | 01 |
+| T1608.005 | Link Target | Resource Development | 02 |
+| T1583.001 | Domains | Resource Development | 02 |
+| T1071.001 | Application Layer Protocol: Web Protocols | Command & Control | 02 |
 
 ---
 

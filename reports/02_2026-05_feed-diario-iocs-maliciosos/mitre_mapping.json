@@ -1,0 +1,31 @@
+{
+  "report": "02 — Feed Diário: IOCs Maliciosos 2026-05-04",
+  "date": "2026-05-04",
+  "threat_actor": "Multiple (Unknown)",
+  "techniques": [
+    {
+      "id": "T1566.002",
+      "tactic": "Initial Access",
+      "name": "Phishing: Spearphishing Link",
+      "procedure": "300 active phishing URLs identified via OpenPhish, impersonating Netflix, Amazon, Instagram, Meta, Ledger, Trezor, MetaMask, and banking institutions."
+    },
+    {
+      "id": "T1608.005",
+      "tactic": "Resource Development",
+      "name": "Link Target",
+      "procedure": "Phishing infrastructure hosted on legitimate platforms: Vercel, GitHub Pages, Webflow, Netlify, Cloudflare Workers, and IPFS — used to evade domain reputation blocklists."
+    },
+    {
+      "id": "T1583.001",
+      "tactic": "Resource Development",
+      "name": "Domains",
+      "procedure": "Typosquatting domains impersonating Meta (invoice-ads-manager[.]com, accounts-admin-agency[.]com), Microsoft (authorised-support[.]com), and cryptocurrency exchanges."
+    },
+    {
+      "id": "T1071.001",
+      "tactic": "Command & Control",
+      "name": "Application Layer Protocol: Web Protocols",
+      "procedure": "5 active Emotet C2 IP addresses identified via Feodo Tracker, communicating over HTTP/HTTPS."
+    }
+  ]
+}
