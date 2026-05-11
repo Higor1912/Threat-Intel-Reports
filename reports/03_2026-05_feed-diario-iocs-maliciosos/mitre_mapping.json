@@ -1,0 +1,31 @@
+{
+  "report": "03 — Feed Diário: IOCs Maliciosos 2026-05-11",
+  "date": "2026-05-11",
+  "threat_actor": "Multiple (Unknown)",
+  "techniques": [
+    {
+      "id": "T1566.002",
+      "tactic": "Initial Access",
+      "name": "Phishing: Spearphishing Link",
+      "procedure": "Phishing URLs distributed via email and social media, impersonating major platforms including streaming services, social networks, and cryptocurrency wallets."
+    },
+    {
+      "id": "T1608.005",
+      "tactic": "Resource Development",
+      "name": "Link Target",
+      "procedure": "Phishing infrastructure hosted on legitimate platforms (Vercel, GitHub Pages, Webflow, Netlify, Cloudflare Workers, IPFS) to evade domain reputation blocklists."
+    },
+    {
+      "id": "T1583.001",
+      "tactic": "Resource Development",
+      "name": "Domains",
+      "procedure": "Typosquatting domains mimicking Meta, Microsoft, and cryptocurrency exchanges used as phishing landing pages."
+    },
+    {
+      "id": "T1071.001",
+      "tactic": "Command & Control",
+      "name": "Application Layer Protocol: Web Protocols",
+      "procedure": "Active Emotet C2 IP addresses identified via Feodo Tracker, communicating over HTTP/HTTPS."
+    }
+  ]
+}

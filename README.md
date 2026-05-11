@@ -2,7 +2,7 @@
 
 Operational threat intelligence reports based on OSINT investigation and MITRE ATT&CK mapping. Each report documents a real-world threat campaign — covering adversary infrastructure, IOC correlation, TTP analysis, and actionable detection recommendations.
 
-![Reports](https://img.shields.io/badge/Reports-02-blue)
+![Reports](https://img.shields.io/badge/Reports-03-blue)
 ![ATT&CK](https://img.shields.io/badge/MITRE%20ATT%26CK-v16-red)
 ![TLP](https://img.shields.io/badge/TLP-GREEN%20%7C%20AMBER-orange)
 ![Tooling](https://img.shields.io/badge/Tooling-CTI%20Toolkit-informational)
@@ -15,6 +15,7 @@ Operational threat intelligence reports based on OSINT investigation and MITRE A
 |---|------|-------|------|--------------|----------|-----|
 | 01 | Oct/2025 | [Efimer Trojan — AI-Assisted Phishing Campaign Targeting Brazilian Users](./reports/01_2025-10_efimer-trojan-phishing-brazil/report.md) | Phishing / Malware | Unknown (FIN) | T1566.002, T1027, T1003 | [↓ PDF](./reports/01_2025-10_efimer-trojan-phishing-brazil/report.pdf) |
 | 02 | May/2026 | [Feed Diário — IOCs Maliciosos 2026-05-04](./reports/02_2026-05_feed-diario-iocs-maliciosos/report.pdf) | Phishing / C2 | Multiple (Unknown) | T1566.002, T1608.005, T1583.001, T1071.001 | [↓ PDF](./reports/02_2026-05_feed-diario-iocs-maliciosos/report.pdf) |
+| 03 | May/2026 | [Feed Diário — IOCs Maliciosos 2026-05-11](./reports/03_2026-05_feed-diario-iocs-maliciosos/report.md) | Phishing / C2 | Multiple (Unknown) | T1566.002, T1608.005, T1583.001, T1071.001 | [↓ PDF](./reports/03_2026-05_feed-diario-iocs-maliciosos/report.pdf) |
 
 > New reports are published monthly. Each analysis follows the methodology described below.
 
