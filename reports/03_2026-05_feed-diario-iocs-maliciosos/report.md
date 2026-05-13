@@ -9,7 +9,7 @@
 
 ## 1. Executive Summary
 
-[Escreva aqui após gerar o PDF pelo TI Report Builder]
+Em 4 de maio de 2026, o pipeline de coleta automatizada identificou 305 indicadores de comprometimento provenientes de feeds públicos de threat intelligence, dos quais 283 foram classificados como maliciosos após enriquecimento via VirusTotal e AbuseIPDB. O conjunto inclui 5 endereços IP associados a infraestrutura de Comando e Controle (C2) do malware Emotet, coletados via Feodo Tracker, e 300 URLs de phishing ativas identificadas pelo OpenPhish. A análise das URLs revela dois padrões predominantes: campanhas de credential harvesting contra usuários de plataformas de redes sociais (Meta/Facebook, Instagram) e serviços de streaming (Netflix, Amazon), e campanhas de roubo de carteiras de criptomoeda, com páginas falsas imitando Ledger, Trezor, MetaMask e exchanges diversas. Destaca-se o uso extensivo de infraestrutura legítima de hospedagem — Vercel, GitHub Pages, Webflow, Cloudflare Workers e IPFS — como vetor de distribuição, técnica que dificulta o bloqueio por reputação de domínio. Recomenda-se o bloqueio imediato dos indicadores nos controles perimetrais e verificação de logs de proxy e DNS para acessos históricos.
 
 ---
 
