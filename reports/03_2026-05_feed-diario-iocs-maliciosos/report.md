@@ -9,7 +9,7 @@
 
 ## 1. Executive Summary
 
-Em 4 de maio de 2026, o pipeline de coleta automatizada identificou 305 indicadores de comprometimento provenientes de feeds públicos de threat intelligence, dos quais 283 foram classificados como maliciosos após enriquecimento via VirusTotal e AbuseIPDB. O conjunto inclui 5 endereços IP associados a infraestrutura de Comando e Controle (C2) do malware Emotet, coletados via Feodo Tracker, e 300 URLs de phishing ativas identificadas pelo OpenPhish. A análise das URLs revela dois padrões predominantes: campanhas de credential harvesting contra usuários de plataformas de redes sociais (Meta/Facebook, Instagram) e serviços de streaming (Netflix, Amazon), e campanhas de roubo de carteiras de criptomoeda, com páginas falsas imitando Ledger, Trezor, MetaMask e exchanges diversas. Destaca-se o uso extensivo de infraestrutura legítima de hospedagem — Vercel, GitHub Pages, Webflow, Cloudflare Workers e IPFS — como vetor de distribuição, técnica que dificulta o bloqueio por reputação de domínio. Recomenda-se o bloqueio imediato dos indicadores nos controles perimetrais e verificação de logs de proxy e DNS para acessos históricos.
+On May 11, 2026, the automated CTI collection pipeline identified 305 indicators of compromise (IOCs) sourced from public threat intelligence feeds, of which 235 were classified as malicious or suspicious following enrichment via VirusTotal and AbuseIPDB. The dataset comprises 4 IP addresses associated with active Command and Control (C2) infrastructure of the Emotet malware family, identified via Feodo Tracker, and 225 active phishing URLs sourced from OpenPhish. Analysis of the phishing URLs reveals a multi-target campaign primarily impersonating social media platforms (Meta/Facebook/Instagram), e-commerce services (Amazon), streaming platforms (Netflix), and cryptocurrency wallets and exchanges. A defining characteristic of this campaign is the extensive abuse of legitimate hosting infrastructure — Vercel (76 URLs), GitHub Pages (18), Webflow (12), and GoDaddy Sites (10) — a technique used to evade domain reputation-based blocklists. Immediate blocking of all listed indicators at perimeter controls is recommended, along with a retrospective search of proxy and DNS logs for historical access.
 
 ---
 
@@ -18,13 +18,14 @@ Em 4 de maio de 2026, o pipeline de coleta automatizada identificou 305 indicado
 | Attribute | Detail |
 |-----------|--------|
 | **Threat Type** | Phishing / Credential Harvesting / C2 Infrastructure |
-| **Target** | Multiple sectors — social media users, streaming subscribers, crypto holders |
+| **Target** | Multiple sectors — social media users, streaming subscribers, crypto holders, e-commerce customers |
 | **Motivation** | Financial |
-| **Attack Vector** | Phishing links via email/social media |
-| **Associated Malware** | Emotet (C2 IPs) |
+| **Attack Vector** | Phishing links distributed via email and social media |
+| **Associated Malware** | Emotet (C2 IPs via Feodo Tracker) |
 | **Threat Actor** | Multiple (Unknown) |
 | **Confidence Level** | Medium |
 | **Collection Date** | 2026-05-11 |
+| **Feed Sources** | Feodo Tracker, OpenPhish |
 
 ---
 
@@ -32,11 +33,11 @@ Em 4 de maio de 2026, o pipeline de coleta automatizada identificou 305 indicado
 
 ### 3.1 Indicators of Compromise (IOCs)
 
-| Type | Count | Classification |
-|------|-------|----------------|
-| IPs (C2) | — | — |
-| URLs (Phishing) | — | — |
-| **Total** | **—** | **— Malicious** |
+| Type | Total | Malicious | Suspicious |
+|------|-------|-----------|------------|
+| IPs (C2) | 5 | 4 | 1 |
+| URLs (Phishing) | 235 | 225 | 10 |
+| **Total** | **305** | **229** | **11** |
 
 > Full IOC list available in [iocs.txt](./iocs.txt).
 
@@ -44,25 +45,50 @@ Em 4 de maio de 2026, o pipeline de coleta automatizada identificou 305 indicado
 
 ### 3.2 Observed Behavior
 
-- **Credential Harvesting:** Phishing pages cloning major platforms to steal login credentials
-- **C2 Communication:** Active C2 IPs identified via Feodo Tracker
-- **Infrastructure Abuse:** Phishing pages hosted on legitimate platforms to evade domain reputation blocks
+- **Credential Harvesting:** Phishing pages cloning major platforms (Meta, Amazon, Netflix, Microsoft, banking institutions) to steal user credentials
+- **Crypto Asset Theft:** Pages impersonating Ledger, Trezor, MetaMask, and cryptocurrency exchanges targeting wallet seed phrases and private keys
+- **C2 Communication:** 4 active Emotet C2 IP addresses communicating over HTTP/HTTPS, collected via Feodo Tracker blocklist
+- **Infrastructure Abuse:** Threat actors hosting phishing pages on legitimate PaaS platforms to bypass domain reputation checks
 
 ---
 
 ### 3.3 Infrastructure Analysis
 
-**C2 Infrastructure:**
+**C2 Infrastructure (Emotet — Feodo Tracker):**
 
-| IP | Reputation | Source |
-|----|-----------|--------|
-| — | — | Feodo Tracker |
+| IP | Status | Source |
+|----|--------|--------|
+| 162[.]243[.]103[.]246 | Malicious | Feodo Tracker |
+| 50[.]16[.]16[.]211 | Malicious | Feodo Tracker |
+| 178[.]62[.]3[.]223 | Malicious | Feodo Tracker |
+| 27[.]133[.]154[.]218 | Malicious | Feodo Tracker |
+| 34[.]204[.]119[.]63 | Suspicious | Feodo Tracker |
 
 **Phishing Hosting Platforms Abused:**
 
-| Platform | Count (approx.) |
-|----------|----------------|
-| — | — |
+| Platform | URLs Identified | Notes |
+|----------|----------------|-------|
+| Vercel | 76 | Most abused — free tier, instant deploy, no domain check |
+| GitHub Pages | 18 | Repository-based hosting, trusted CDN |
+| Webflow | 12 | No-code builder with free subdomains |
+| GoDaddy Sites | 10 | Free website builder |
+| Netlify | 4 | Similar to Vercel — free deploy pipeline |
+| Blogspot | 4 | Google-hosted blogs |
+| Weebly | 4 | Free website builder |
+| Others (Zeabur, EdgeOne, GitBook, IPFS) | 6 | Emerging abuse targets |
+
+**Phishing Target Categories:**
+
+| Category | URLs | Examples Impersonated |
+|----------|------|----------------------|
+| Others / Generic | 141 | Gambling sites (Galabet), regional scams |
+| Social Media (Meta) | 26 | Facebook, Instagram, Meta Business |
+| E-commerce (Amazon) | 19 | Amazon clone pages |
+| Streaming (Netflix) | 18 | Netflix clone pages |
+| Banking / Finance | 8 | iCloud, bank portals, EasyBank |
+| Microsoft | 6 | Microsoft support, Azure portals |
+| Crypto / Wallets | 6 | Ledger, Trezor, MetaMask, NetCoins |
+| Gaming (Roblox) | 1 | Roblox free items scam |
 
 ---
 
@@ -70,10 +96,10 @@ Em 4 de maio de 2026, o pipeline de coleta automatizada identificou 305 indicado
 
 | Category | Tool | Purpose |
 |----------|------|---------|
-| Feed Collection | Feed Aggregator (CTI Toolkit) | OpenPhish + Feodo Tracker ingestion |
-| IOC Enrichment | VirusTotal, AbuseIPDB | Detection scoring and verdict |
-| ATT&CK Mapping | ttp_mapper.py + manual review | TTP correlation |
-| Report Generation | TI Report Builder | PDF output |
+| Feed Collection | feed_aggregator.py (CTI Toolkit) | OpenPhish + Feodo Tracker ingestion |
+| IOC Enrichment | ioc_enricher.py — VirusTotal, AbuseIPDB | Detection scoring and verdict classification |
+| ATT&CK Mapping | ttp_mapper.py + manual review | TTP correlation against MITRE ATT&CK v16 |
+| Report Generation | TI Report Builder (HTML) | Structured PDF output |
 
 ---
 
@@ -81,10 +107,10 @@ Em 4 de maio de 2026, o pipeline de coleta automatizada identificou 305 indicado
 
 | Tactic | Technique | ID | Procedure |
 |--------|-----------|----|-----------|
-| Initial Access | Phishing: Spearphishing Link | T1566.002 | Phishing URLs distributed via email/social media |
-| Resource Development | Link Target | T1608.005 | Phishing infrastructure hosted on legitimate platforms |
-| Resource Development | Domains | T1583.001 | Typosquatting domains mimicking major brands |
-| Command & Control | Application Layer Protocol: Web Protocols | T1071.001 | Emotet C2 IPs communicating via HTTP/HTTPS |
+| Initial Access | Phishing: Spearphishing Link | T1566.002 | 225 active phishing URLs distributed via email/social media, impersonating Netflix, Amazon, Meta, Microsoft, Ledger, and others |
+| Resource Development | Link Target | T1608.005 | Phishing infrastructure hosted on Vercel (76), GitHub Pages (18), Webflow (12), GoDaddy (10), and other legitimate platforms to evade reputation blocks |
+| Resource Development | Domains | T1583.001 | Typosquatting domains mimicking Meta (invoice-ads-manager[.]com), Microsoft (authorised-support[.]com), and cryptocurrency exchanges |
+| Command & Control | Application Layer Protocol: Web Protocols | T1071.001 | 4 active Emotet C2 IPs communicating over HTTP/HTTPS, identified via Feodo Tracker |
 
 > Full mapping available in [mitre_mapping.json](./mitre_mapping.json).
 
@@ -93,17 +119,19 @@ Em 4 de maio de 2026, o pipeline de coleta automatizada identificou 305 indicado
 ## 5. Recommendations
 
 ### Immediate Actions
-- Block all IOCs listed in this report at perimeter controls (firewall, proxy, DNS)
-- Search SIEM/proxy logs for historical hits against listed indicators
-- Alert SOC team for active monitoring
+- Block all IOCs listed in this report at perimeter controls (firewall, proxy, DNS sinkhole)
+- Search SIEM and proxy logs for historical hits against all listed indicators
+- Share indicators with SOC team for active monitoring and alerting
 
 ### Detection
-- Monitor DNS queries for typosquatting patterns against major brand names
-- Flag outbound connections to Cloudflare Workers and IPFS gateways for unusual patterns
+- Monitor DNS queries for typosquatting patterns against major brand names (Meta, Amazon, Netflix, Microsoft)
+- Flag and inspect outbound HTTP/HTTPS connections to Vercel, GitHub Pages, Webflow, and similar PaaS platforms for anomalous patterns
+- Create SIEM rules for connections to the 4 Emotet C2 IPs
 
 ### Hardening
-- Enable browser-based phishing protection and enforce Safe Browsing policies
-- Deploy MFA across all user accounts to mitigate credential harvesting impact
+- Enable browser-based phishing protection (Google Safe Browsing, Microsoft SmartScreen) across all endpoints
+- Deploy MFA on all user-facing services to reduce impact of credential harvesting
+- Educate users on phishing indicators — legitimate services do not request credentials via unsolicited links
 
 ---
 

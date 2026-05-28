@@ -1,0 +1,31 @@
+{
+  "report": "04 — Feed Diário: IOCs Maliciosos 2026-05-25",
+  "date": "2026-05-25",
+  "threat_actor": "Multiple (Unknown)",
+  "techniques": [
+    {
+      "id": "T1566.002",
+      "tactic": "Initial Access",
+      "name": "Phishing: Spearphishing Link",
+      "procedure": "228 active phishing URLs identified via OpenPhish targeting gaming platforms (Roblox, Fortnite), social media (Meta/Instagram/Facebook), crypto wallets (Ledger, Trezor, MetaMask), e-commerce (Amazon, Shopee, eBay), and streaming services (Netflix)."
+    },
+    {
+      "id": "T1608.005",
+      "tactic": "Resource Development",
+      "name": "Link Target",
+      "procedure": "Phishing infrastructure hosted on legitimate platforms: Vercel (25), Blogspot (18), IPFS (10), Netlify (8), Wasmer (6), GitBook (6), Weebly (4), EdgeOne (4), GitHub Pages (4) — used to evade domain reputation blocklists."
+    },
+    {
+      "id": "T1583.001",
+      "tactic": "Resource Development",
+      "name": "Domains",
+      "procedure": "Typosquatting domains impersonating Ledger (ledger-shop-now[.]com, ledger-entry[.]com, ledgervaultshop[.]com), T-Mobile (t-mobile[.]fvypec[.]top), and DPD parcel delivery (dpd[.]czplqw[.]ink, dpd[.]shipdora[.]top)."
+    },
+    {
+      "id": "T1071.001",
+      "tactic": "Command & Control",
+      "name": "Application Layer Protocol: Web Protocols",
+      "procedure": "4 active Emotet C2 IP addresses communicating over HTTP/HTTPS, identified via Feodo Tracker."
+    }
+  ]
+}
