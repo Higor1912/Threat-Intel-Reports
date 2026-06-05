@@ -1,0 +1,31 @@
+{
+  "report": "05 — Feed Diário: IOCs Maliciosos 2026-06-05",
+  "date": "2026-06-05",
+  "threat_actor": "Multiple (Unknown)",
+  "techniques": [
+    {
+      "id": "T1566.002",
+      "tactic": "Initial Access",
+      "name": "Phishing: Spearphishing Link",
+      "procedure": "296 active phishing URLs targeting banking/financial services (46), gaming platforms — Roblox, Fortnite, PUBG (26), social media (Meta/Instagram, 13), streaming (Netflix, 9), e-commerce (Amazon, 5), and Microsoft services (5)."
+    },
+    {
+      "id": "T1608.005",
+      "tactic": "Resource Development",
+      "name": "Link Target",
+      "procedure": "Phishing infrastructure hosted on legitimate platforms: GitHub Pages (30), Vercel (10), Blogspot (4), GitBook (2), Weebly (2), and others (Framer, EdgeOne, Wasmer, Replit, Netlify, Cloudflare) — used to evade domain reputation blocklists."
+    },
+    {
+      "id": "T1583.001",
+      "tactic": "Resource Development",
+      "name": "Domains",
+      "procedure": "Typosquatting and lookalike domains impersonating banking institutions, gaming platforms, and delivery services used as phishing landing pages."
+    },
+    {
+      "id": "T1071.001",
+      "tactic": "Command & Control",
+      "name": "Application Layer Protocol: Web Protocols",
+      "procedure": "3 active Emotet C2 IP addresses communicating over HTTP/HTTPS identified via Feodo Tracker. IPs 162.243.103.246 and 50.16.16.211 remain persistent across all collection cycles since May 4."
+    }
+  ]
+}
