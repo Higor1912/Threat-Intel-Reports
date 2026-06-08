@@ -1,0 +1,31 @@
+{
+  "report": "06 — Feed Diário: IOCs Maliciosos 2026-06-08",
+  "date": "2026-06-08",
+  "threat_actor": "Multiple (Unknown)",
+  "techniques": [
+    {
+      "id": "T1566.002",
+      "tactic": "Initial Access",
+      "name": "Phishing: Spearphishing Link",
+      "procedure": "215 active phishing URLs targeting gaming (12), banking/delivery (9), e-commerce/Amazon (8), crypto wallets (5), streaming/Netflix (5), social media/Meta (3), and Microsoft services (1)."
+    },
+    {
+      "id": "T1608.005",
+      "tactic": "Resource Development",
+      "name": "Link Target",
+      "procedure": "Phishing infrastructure hosted on GitHub Pages (13), Vercel (11), Blogspot (10), GoDaddy (8), IPFS (6), Wasmer (5), Netlify (2), EdgeOne (2), and Replit (1)."
+    },
+    {
+      "id": "T1583.001",
+      "tactic": "Resource Development",
+      "name": "Domains",
+      "procedure": "Lookalike and typosquatting domains impersonating banking institutions, gaming platforms, and delivery services used as phishing landing pages."
+    },
+    {
+      "id": "T1071.001",
+      "tactic": "Command & Control",
+      "name": "Application Layer Protocol: Web Protocols",
+      "procedure": "3 persistent Emotet C2 IPs (162.243.103.246, 50.16.16.211, 27.133.154.218) active for the 6th consecutive collection cycle since May 4 — indicating a stable, long-running C2 infrastructure with no signs of takedown."
+    }
+  ]
+}
