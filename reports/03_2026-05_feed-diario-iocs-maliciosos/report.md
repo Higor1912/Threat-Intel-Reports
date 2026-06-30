@@ -54,15 +54,19 @@ On May 11, 2026, the automated CTI collection pipeline identified 305 indicators
 
 ### 3.3 Infrastructure Analysis
 
-**C2 Infrastructure (Emotet — Feodo Tracker):**
+**C2 Infrastructure — Enriched (Feodo Tracker + ASN Data):**
 
-| IP | Status | Source |
-|----|--------|--------|
-| 162[.]243[.]103[.]246 | Malicious | Feodo Tracker |
-| 50[.]16[.]16[.]211 | Malicious | Feodo Tracker |
-| 178[.]62[.]3[.]223 | Malicious | Feodo Tracker |
-| 27[.]133[.]154[.]218 | Malicious | Feodo Tracker |
-| 34[.]204[.]119[.]63 | Suspicious | Feodo Tracker |
+| IP | Malware | Port | ASN | Provider | Country | First Seen | Status |
+|----|---------|------|-----|----------|---------|------------|--------|
+| 162[.]243[.]103[.]246 | Emotet (Heodo) | 8080 | AS14061 | DigitalOcean | US | 2022-06-04 | Offline |
+| 50[.]16[.]16[.]211 | QakBot | 443 | AS14618 | Amazon AWS (EC2) | US | 2025-12-30 | Online |
+| 178[.]62[.]3[.]223 | Emotet | 7080 | AS14061 | DigitalOcean | NL | — | Malicious |
+| 27[.]133[.]154[.]218 | Emotet | 8080 | AS4766 | Korea Telecom | JP/KR | — | Malicious |
+| 34[.]204[.]119[.]63 | QakBot | 443 | AS14618 | Amazon AWS (EC2) | US | — | Suspicious |
+
+**Infrastructure Analysis:**
+
+The C2 infrastructure is split between two major cloud providers: DigitalOcean (AS14061) hosting 2 Emotet IPs, and Amazon AWS EC2 (AS14618) hosting 2 QakBot IPs. The use of AWS EC2 for C2 is a notable evasion technique — many organizations whitelist AWS IP ranges, and blocking them wholesale causes significant collateral damage, giving actors a degree of implicit protection. C2 ports (443, 7080, 8080) are chosen to blend with legitimate HTTP/HTTPS traffic.
 
 **Phishing Hosting Platforms Abused:**
 
@@ -103,7 +107,24 @@ On May 11, 2026, the automated CTI collection pipeline identified 305 indicators
 
 ---
 
-## 4. MITRE ATT&CK Mapping
+## 4. Diamond Model
+
+The Diamond Model provides a structured framework to analyze the relationship between the adversary, capabilities, infrastructure, and victims observed in this collection cycle.
+
+| Vertex | Observation |
+|--------|-------------|
+| **Adversary** | Multiple unattributed threat actors. C2 operators (Emotet/QakBot) and phishing actors appear to be independent groups sharing no direct coordination. |
+| **Capability** | Emotet loader and QakBot communicating over HTTP/HTTPS. Phishing pages cloning Meta, Netflix, Amazon, Ledger and others, hosted on legitimate PaaS (Vercel, GitHub Pages, Webflow) to evade domain reputation controls. |
+| **Infrastructure** | C2: DigitalOcean VPS (AS14061) and Amazon AWS EC2 (AS14618). Phishing: Vercel (76 URLs) as dominant platform, indicating actors favoring free-tier deploy pipelines with no domain verification. |
+| **Victim** | End users across multiple sectors globally: social media (Meta/Instagram), e-commerce (Amazon), streaming (Netflix), crypto wallet holders (Ledger, Trezor, MetaMask). Broad-spectrum targeting with no geographic restriction. |
+
+**Confidence Level Justification: Medium**
+
+C2 attribution to Emotet and QakBot is confirmed by Feodo Tracker. Phishing actor attribution remains unconfirmed. The absence of cross-referencing with additional intel sources (sandboxing, passive DNS pivoting) and lack of direct malware samples prevents elevation to High confidence.
+
+---
+
+## 5. MITRE ATT&CK Mapping
 
 | Tactic | Technique | ID | Procedure |
 |--------|-----------|----|-----------|
@@ -116,7 +137,7 @@ On May 11, 2026, the automated CTI collection pipeline identified 305 indicators
 
 ---
 
-## 5. Recommendations
+## 6. Recommendations
 
 ### Immediate Actions
 - Block all IOCs listed in this report at perimeter controls (firewall, proxy, DNS sinkhole)
@@ -135,15 +156,15 @@ On May 11, 2026, the automated CTI collection pipeline identified 305 indicators
 
 ---
 
-## 6. Appendix
+## 7. Appendix
 
-### 6.1 Full IOC List
+### 7.1 Full IOC List
 See [iocs.txt](./iocs.txt)
 
-### 6.2 ATT&CK JSON
+### 7.2 ATT&CK JSON
 See [mitre_mapping.json](./mitre_mapping.json)
 
-### 6.3 References
+### 7.3 References
 See [references.txt](./references.txt)
 
 ---

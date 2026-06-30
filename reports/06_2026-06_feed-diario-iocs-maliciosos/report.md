@@ -55,15 +55,21 @@ On June 8, 2026, the automated CTI collection pipeline identified 305 indicators
 
 ### 3.3 Infrastructure Analysis
 
-**C2 Infrastructure (Emotet — Feodo Tracker):**
+**C2 Infrastructure — Enriched (Feodo Tracker + ASN Data):**
 
-| IP | Status | Persistence |
-|----|--------|-------------|
-| 162[.]243[.]103[.]246 | Malicious | **6 consecutive cycles** — since May 4 |
-| 50[.]16[.]16[.]211 | Malicious | **6 consecutive cycles** — since May 4 |
-| 27[.]133[.]154[.]218 | Malicious | **6 consecutive cycles** — since May 4 |
-| 34[.]204[.]119[.]63 | Suspicious | Active since May 4 |
-| 178[.]62[.]3[.]223 | Suspicious | Active since May 4 |
+| IP | Malware | Port | ASN | Provider | Country | First Seen | Status |
+|----|---------|------|-----|----------|---------|------------|--------|
+| 162[.]243[.]103[.]246 | Emotet (Heodo) | 8080 | AS14061 | DigitalOcean | US | 2022-06-04 | Offline |
+| 50[.]16[.]16[.]211 | QakBot | 443 | AS14618 | Amazon AWS (EC2) | US | 2025-12-30 | Online |
+| 27[.]133[.]154[.]218 | Emotet | 8080 | AS4766 | Korea Telecom | JP/KR | — | Active |
+| 34[.]204[.]119[.]63 | QakBot | 443 | AS14618 | Amazon AWS (EC2) | US | — | Suspicious |
+| 178[.]62[.]3[.]223 | Emotet | 7080 | AS14061 | DigitalOcean | NL | — | Suspicious |
+
+**Infrastructure Analysis:**
+
+The C2 infrastructure presents a mixed hosting profile. Two IPs (50[.]16[.]16[.]211 and 34[.]204[.]119[.]63) reside on Amazon AWS EC2 (AS14618), indicating actors leveraging legitimate cloud infrastructure for C2 hosting — a technique that complicates blocklist-based defenses since blocking entire AWS IP ranges would cause significant collateral damage. Two IPs (162[.]243[.]103[.]246 and 178[.]62[.]3[.]223) are hosted on DigitalOcean (AS14061), which has historically been abused for low-cost botnet hosting. The C2 ports used (443, 7080, 8080) blend with legitimate web traffic to evade port-based detection.
+
+Notably, 162[.]243[.]103[.]246 was first identified by Feodo Tracker in June 2022 and remained in the active blocklist through March 2026 — nearly 4 years of continuous operation without successful takedown, suggesting either operator resilience or low enforcement priority. The Feodo Tracker FAQ confirms that datasets are currently empty following Operation Endgame (2024), which targeted Emotet and related families, yet these IPs persist in the blocklist, indicating residual infrastructure that survived the operation.
 
 **Phishing Hosting Platforms Abused:**
 
@@ -105,7 +111,24 @@ On June 8, 2026, the automated CTI collection pipeline identified 305 indicators
 
 ---
 
-## 4. MITRE ATT&CK Mapping
+## 4. Diamond Model
+
+The Diamond Model provides a structured framework to analyze the relationship between the adversary, capabilities, infrastructure, and victims observed in this collection cycle.
+
+| Vertex | Observation |
+|--------|-------------|
+| **Adversary** | Multiple unattributed threat actors operating financially-motivated campaigns. The C2 infrastructure (Emotet/QakBot) and phishing campaigns show no overlap in TTPs suggesting independent operators sharing common tooling rather than a coordinated single actor. |
+| **Capability** | Emotet loader (Heodo variant) communicating over HTTP/HTTPS on non-standard ports (7080, 8080). QakBot C2 on port 443 blending with HTTPS traffic. Phishing pages generated via clone tools or AI-assisted page builders, hosted on legitimate PaaS platforms to evade detection. |
+| **Infrastructure** | C2: DigitalOcean VPS (AS14061) and Amazon AWS EC2 (AS14618). Phishing: Legitimate hosting platforms (GitHub Pages, Vercel, Blogspot, GoDaddy Sites) used as disposable infrastructure — rotated weekly to evade static blocklists. |
+| **Victim** | End users globally across multiple sectors: banking/finance, e-commerce, gaming, social media, streaming. No specific geographic targeting identified — broad-spectrum campaigns maximizing reach. |
+
+**Confidence Level Justification: Medium**
+
+The Medium confidence rating reflects that while the C2 infrastructure attribution to Emotet and QakBot is confirmed by Feodo Tracker (a trusted, validated feed), the phishing campaign attribution to specific actors or groups remains unconfirmed. The targeting patterns and platform rotation behavior are consistent with multiple independent low-sophistication actors rather than a single coordinated threat group. Elevation to High confidence would require corroborating indicators from additional independent sources or direct malware analysis.
+
+---
+
+## 5. MITRE ATT&CK Mapping
 
 | Tactic | Technique | ID | Procedure |
 |--------|-----------|----|-----------|
@@ -118,7 +141,7 @@ On June 8, 2026, the automated CTI collection pipeline identified 305 indicators
 
 ---
 
-## 5. Recommendations
+## 6. Recommendations
 
 ### Immediate Actions
 - Block all IOCs listed in this report at perimeter controls (firewall, proxy, DNS sinkhole)
@@ -137,15 +160,15 @@ On June 8, 2026, the automated CTI collection pipeline identified 305 indicators
 
 ---
 
-## 6. Appendix
+## 7. Appendix
 
-### 6.1 Full IOC List
+### 7.1 Full IOC List
 See [iocs.txt](./iocs.txt)
 
-### 6.2 ATT&CK JSON
+### 7.2 ATT&CK JSON
 See [mitre_mapping.json](./mitre_mapping.json)
 
-### 6.3 References
+### 7.3 References
 See [references.txt](./references.txt)
 
 ---

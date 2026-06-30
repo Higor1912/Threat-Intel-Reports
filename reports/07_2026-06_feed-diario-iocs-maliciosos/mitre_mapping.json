@@ -1,0 +1,31 @@
+{
+  "report": "07 — Feed Diário: IOCs Maliciosos 2026-06-30",
+  "date": "2026-06-30",
+  "threat_actor": "Multiple (Unknown)",
+  "techniques": [
+    {
+      "id": "T1566.002",
+      "tactic": "Initial Access",
+      "name": "Phishing: Spearphishing Link",
+      "procedure": "300 active phishing URLs targeting Gaming, Social Media (Meta), Crypto / Wallets."
+    },
+    {
+      "id": "T1608.005",
+      "tactic": "Resource Development",
+      "name": "Link Target",
+      "procedure": "Phishing infrastructure hosted on Blogspot (21), Vercel (17), GitHub Pages (15) and others — used to evade domain reputation blocklists."
+    },
+    {
+      "id": "T1583.001",
+      "tactic": "Resource Development",
+      "name": "Domains",
+      "procedure": "Lookalike and typosquatting domains impersonating major brands used as phishing landing pages."
+    },
+    {
+      "id": "T1071.001",
+      "tactic": "Command & Control",
+      "name": "Application Layer Protocol: Web Protocols",
+      "procedure": "2 active Emotet C2 IP addresses identified via Feodo Tracker, communicating over HTTP/HTTPS."
+    }
+  ]
+}
